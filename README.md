@@ -1,33 +1,44 @@
 
 ## users table
 
-| Column      | Type       | Options           |
-|-------------|------------|-------------------|
-| name        | storing    | null: false       |
-| password    | storing    | null: false       |
-| email       | storing    | null: false       |
-
+| Column                | Type       | Options           |
+|-----------------------|------------|-------------------|
+| first_name            | string     | null: false       |
+| last_name             | string     | null: false       |
+| first_name_kana       | string     | null: false       |
+| last_name_kana        | string     | null: false       |
+| nickname              | string     | null: false       |
+| encrypted_password    | string     | null: false       |
+| email                 | string     | null: false       |
+| birth_date            | string     | null: false       |
 
 ### Association
 
 - has_many :items
-- belongs_to :purchase_record
+- has_many :purchase_record
 
 
 ## items table
 
-| Column      | Type       | Options           |
-|-------------|------------|-------------------|
-| item_name   | storing    | null: false       |
-| category    | storing    | null: false       |
-| price       | storing    | null: false       |
-| seller      | storing    | null: false       |
-| user        | references | foreign_key: true |
+| Column                     | Type        | Options           |
+|----------------------------|-------------|-------------------|
+| name                       | string      | null: false       |
+| category                   | string      | null: false       |
+| price                      | integer     | null: false       |
+| seller                     | string      | null: false       |
+| user                       | references  | foreign_key: true |
+| image                      | Activestrage| null: false       |
+| product_condition          | string      | null: false       |
+| delivery_fee               | string      | null: false       |
+| shipping_area              | string      | null: false       |
+| days_to_ship               | string      | null: false       |
+| product_description        | text        | null: false       |
+
 
 
 ### Association
 - belongs_to :user
-- belongs_to :purchase_record
+- has_one :purchase_record
 
 
 
@@ -37,21 +48,30 @@
 |-------------|------------|-------------------|
 | user        | references | foreign_key: true |
 | item        | references | foreign_key: true |
-| buyer       | storing    | null: false       |
 
 
 ### Association
-- has_one :user
-- has_one :item
-- belongs_to :address
+- belongs_to :user
+- belongs_to :item
+- has_one :address
 
 
-## address table
+## addresses table
 
-| Column      | Type       | Options           |
-|-------------|------------|-------------------|
-| buyer       | references | foreign_key: true |
-| address     | storing    | null: false       |
+| Column                | Type       | Options           |
+|-----------------------|------------|-------------------|
+| purchase_record       | references | foreign_key: true |
+| prefectures           | string     | null: false       |
+| municipality          | string     | null: false       |
+| address               | string     | null: false       |
+| phone_number          | string     | null: false       |
+| postal_code           | string     | null: false       |
+
+
+
+
+
+
 
 ### Association
 - has_one :purchase_record
