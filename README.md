@@ -10,12 +10,12 @@
 | nickname              | string     | null: false       |
 | encrypted_password    | string     | null: false       |
 | email                 | string     | null: false       |
-| birth_date            | string     | null: false       |
+| birth_date            | date       | null: false       |
 
 ### Association
 
 - has_many :items
-- has_many :purchase_record
+- has_many :purchase_records
 
 
 ## items table
@@ -23,15 +23,13 @@
 | Column                     | Type        | Options           |
 |----------------------------|-------------|-------------------|
 | name                       | string      | null: false       |
-| category                   | string      | null: false       |
+| category_id                | integer     | null: false       |
 | price                      | integer     | null: false       |
-| seller                     | string      | null: false       |
 | user                       | references  | foreign_key: true |
-| image                      | Activestrage| null: false       |
-| product_condition          | string      | null: false       |
-| delivery_fee               | string      | null: false       |
-| shipping_area              | string      | null: false       |
-| days_to_ship               | string      | null: false       |
+| product_condition_id       | integer     | null: false       |
+| delivery_fee_id            | integer     | null: false       |
+| shipping_area_id           | integer     | null: false       |
+| days_to_ship_id            | integer     | null: false       |
 | product_description        | text        | null: false       |
 
 
@@ -61,17 +59,12 @@
 | Column                | Type       | Options           |
 |-----------------------|------------|-------------------|
 | purchase_record       | references | foreign_key: true |
-| prefectures           | string     | null: false       |
+| prefectures_id        | integer    | null: false       |
 | municipality          | string     | null: false       |
 | address               | string     | null: false       |
 | phone_number          | string     | null: false       |
 | postal_code           | string     | null: false       |
-
-
-
-
-
-
+| building_name         | string     |                   |
 
 ### Association
-- has_one :purchase_record
+- belongs_to :purchase_record
