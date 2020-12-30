@@ -128,17 +128,17 @@
 
     <% @items.each do |item| %>
       <li class='list'>
-        <%= link_to "#" do %>
+        <%= link_to item_path(item.id)  do %>
         <div class='item-img-content'>
           <%= image_tag item.image, class: "item-img" %>
 
-          <%# 商品が売れていればsold outを表示しましょう %>
-          <%# if @item.present? %>
+          <%# 商品が売れていればsold outを表示しましょう(復習の為あえて残す) %>
+          <% if @item.present? %>
           <div class='sold-out'>
             <span>Sold Out!!</span>
           </div>
-          <%# end %>
-          <%# //商品が売れていればsold outを表示しましょう %>
+          <% end %>
+          <%# //商品が売れていればsold outを表示しましょう(復習の為あえて残す) %>
 
         </div>
         <div class='item-info'>
